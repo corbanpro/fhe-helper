@@ -1,0 +1,10 @@
+#root {
+  max-width: 100%;
+}
+
+.hero-banner {
+  min-height: 80vh;
+  background-image: url("/src/assets/HeroFrame.jpg");
+  background-size: cover;
+  background-position: 50% 25%;
+}
