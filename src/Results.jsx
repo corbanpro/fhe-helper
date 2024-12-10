@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { getChatGPTResponse } from "./ChatGpt";
+import { getChatGPTResponse } from "./ChatGpt.js";
 import Banner from "./Banner";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -12,7 +12,7 @@ const buttonClasses = [
   "card-gradient-3",
   "card-gradient-4",
   "card-gradient-5",
-  "card-gradient-6"
+  "card-gradient-6",
 ];
 
 export default function Results() {
@@ -31,7 +31,7 @@ export default function Results() {
     setResults(null);
     const finalAnswers = {};
 
-    answers.answers.forEach(answer => {
+    answers.answers.forEach((answer) => {
       finalAnswers[answer.question] = answer.display;
     });
     let proompt =
@@ -44,7 +44,7 @@ export default function Results() {
     proompt +=
       "Based on this information, make a plan for their FHE. Wherever possible, include references to scriptures, conference talks, or other church materials. Make sure to include a brief spiritual thought, an activity, and a treat.";
 
-    getChatGPTResponse(proompt).then(data => {
+    getChatGPTResponse(proompt).then((data) => {
       setResults(data);
       if (data) localStorage.setItem("lastResult", JSON.stringify({ id: answers.id, data }));
     });
