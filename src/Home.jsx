@@ -1,6 +1,7 @@
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import HeroFrame from "./assets/HeroFrame.jpg";
+import { RocketTakeoffFill } from "react-bootstrap-icons";
 
 export default function Home() {
   return (
@@ -14,17 +15,18 @@ export default function Home() {
           <hr />
           <div className="fs-5">
             <p>
-              Welcome to Gather&Grow! If you've ever struggled to come up with ideas for Family Home
-              Evening, you're in the right place!
+              Welcome to <strong>Gather&Grow</strong>! If you've ever struggled to come up with
+              ideas for Family Home Evening, you're in the right place!
             </p>
             <p>
-              Families don't always fit the mold, and neither should your FHE. We help you find the
-              perfect FHE for YOUR family.
+              Families don't always fit the mold and can take many different shapes and sizes. Your
+              plans for FHE should be as unique as your circumstances! Get started and find the
+              perfect FHE plan for <strong>your</strong> family.
             </p>
             <div className="mt-3">
               <Link to="/get-started">
                 <Button variant="primary" size="lg">
-                  Plan the Perfect FHE
+                  Plan the Perfect FHE <RocketTakeoffFill />
                 </Button>
               </Link>
             </div>

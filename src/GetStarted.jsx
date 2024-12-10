@@ -340,7 +340,7 @@ export default function GetStarted() {
             </div>
             <div className="d-flex justify-content-center mt-4">
               <button onClick={getResults} className="btn btn-primary btn-lg">
-                I'm Ready! Generate My Plan.
+                I'm Ready! Generate My Plan!
               </button>
             </div>
           </>
