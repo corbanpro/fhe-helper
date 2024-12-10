@@ -1,27 +1,31 @@
-const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+import { secret } from "@aws-amplify/backend";
+const apiKey = import.meta.env.VITE_OPENAI_API_KEY || secret("VITE_OPENAI_API_KEY");
+console.log("API Key:", apiKey);
+console.log("Environment Key:", import.meta.env.VITE_OPENAI_API_KEY);
+console.log("Secret Keys:", secret("VITE_OPENAI_API_KEY"));
 
 export async function getChatGPTResponse(prompt) {
   const url = "https://api.openai.com/v1/chat/completions";
 
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${apiKey}`,
+    Authorization: `Bearer ${apiKey}`
   };
 
   const body = JSON.stringify({
     model: "gpt-4o-mini",
     messages: [
       { role: "system", content: "You are a helpful assistant." },
-      { role: "user", content: prompt },
+      { role: "user", content: prompt }
     ],
-    temperature: 0.7, // Adjust creativity level
+    temperature: 0.7 // Adjust creativity level
   });
 
   try {
     const response = await fetch(url, {
       method: "POST",
       headers,
-      body,
+      body
     });
 
     if (!response.ok) {

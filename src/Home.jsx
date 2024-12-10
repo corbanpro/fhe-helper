@@ -1,5 +1,6 @@
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import HeroFrame from "./assets/HeroFrame.jpg";
 
 export default function Home() {
   return (
@@ -32,12 +33,7 @@ export default function Home() {
       </Card>
       <div className="d-flex justify-content-center align-items-center">
         <div className="position-absolute">
-          <img
-            src="/src/assets/HeroFrame.jpg"
-            alt=""
-            className="rounded rounded-4"
-            style={{ width: "60rem" }}
-          />
+          <img src={HeroFrame} alt="" className="rounded rounded-4" style={{ width: "60rem" }} />
         </div>
       </div>
       <div></div>
