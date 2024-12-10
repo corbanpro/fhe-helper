@@ -1,5 +1,4 @@
 const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
-console.log("API Key:", apiKey);
 
 export async function getChatGPTResponse(prompt) {
   const url = "https://api.openai.com/v1/chat/completions";
