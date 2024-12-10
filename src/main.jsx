@@ -8,6 +8,8 @@ import Home from "./Home.jsx";
 
 import "./bootstrap.css";
 import "./App.css";
+import GetStarted from "./GetStarted.jsx";
+import Results from "./Results.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +20,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        errorElement: <ErrorPage />,
+      },
+      {
+        path: "/my-plan",
+        element: <Results />,
+      },
+      {
+        path: "/get-started",
+        element: <GetStarted />,
       },
     ],
   },
