@@ -35,7 +35,7 @@ export default function Home() {
       </Card>
       <div className="d-flex justify-content-center align-items-center">
         <div className="position-absolute">
-          <img src={HeroFrame} alt="" className="rounded rounded-4" style={{ width: "60rem" }} />
+          <img src={HeroFrame} alt="" className="rounded rounded-4" style={{ width: "50rem" }} />
         </div>
       </div>
       <div></div>
