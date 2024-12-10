@@ -61,12 +61,12 @@ export default function Results() {
         description="Here's an idea for a plan for this week's FHE!"
         gradient="2"
       />
-      <div className="d-flex justify-content-center flex-wrap my-3">
+      <div className="justify-content-center flex-wrap my-3 d-none d-sm-flex">
         {answers.map((answer, i) => (
           <ReviewButton i={i} key={i} text={answer.display} onClickParams={answer.questionId} />
         ))}
       </div>
-      <div className="mx-auto pb-5" style={{ maxWidth: "1048px" }}>
+      <div className="mx-auto pb-5 px-3" style={{ maxWidth: "1048px" }}>
         <h1 className="display-5 my-4">Your Results</h1>
         {!results ? (
           <Skeleton count={5} />

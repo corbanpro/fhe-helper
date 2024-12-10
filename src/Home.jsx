@@ -9,7 +9,7 @@ export default function Home() {
       className="w-100 overflow-hidden hero-banner-bg d-flex
       position-absolute top-0 align-items-center justify-content-evenly"
     >
-      <Card style={{ maxWidth: "35rem" }} className="mx-3 rounded-4 position-relative z-3">
+      <Card style={{ maxWidth: "35rem" }} className="mx-3 rounded-4 position-relative z-2">
         <Card.Body className="p-4">
           <Card.Title className="fs-1 mb-3">Gather&Grow</Card.Title>
           <hr />

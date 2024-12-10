@@ -338,7 +338,7 @@ export default function GetStarted() {
             <div className="text-center mt-2 mb-4 lead fs-6">
               Tip: Click a box to change your response.
             </div>
-            <div className="d-flex justify-content-center mt-4">
+            <div className="d-flex justify-content-center my-4 pb-5">
               <button onClick={getResults} className="btn btn-primary btn-lg">
                 I'm Ready! Generate My Plan!
               </button>
@@ -346,16 +346,19 @@ export default function GetStarted() {
           </>
         ) : (
           <>
-            <div className="d-flex justify-content-center align-items-center position-relative">
+            <div className="my-3 d-flex justify-content-center align-items-center position-relative">
               {currentQuestion !== firstQuestion && (
-                <button onClick={goBack} className="btn position-absolute left-0">
+                <button
+                  onClick={goBack}
+                  className="d-none d-sm-inline btn position-absolute left-0"
+                >
                   <CaretLeft className="fs-3" />
                 </button>
               )}
 
               <Question question={questions[currentQuestion].question} />
             </div>
-            <div className="d-flex justify-content-center flex-wrap">
+            <div className="d-flex justify-content-center flex-wrap mb-5 pb-5">
               {questions[currentQuestion].options.map((option, i) => (
                 <ChoiceButton
                   i={i}
@@ -374,7 +377,7 @@ export default function GetStarted() {
 }
 
 function Question({ question }) {
-  return <h1 className="text-center display-5 mt-4 mb-2">{question}</h1>;
+  return <h1 className="text-center display-5 my-2">{question}</h1>;
 }
 
 export function ReviewButton({ i, text, onClickParams, onClick }) {
