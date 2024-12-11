@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CaretLeft, PencilFill } from "react-bootstrap-icons";
+import { CaretLeft, PencilFill, RocketTakeoffFill } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import Banner from "./Banner";
 
@@ -19,6 +19,7 @@ const questions = {
     options: [
       {
         option: "I'm Single",
+        prompt: "I'm Single, and I'm doing FHE alone. Please plan an activity that I can do alone.",
       },
       {
         option: "I'm With Friends",
@@ -276,6 +277,7 @@ export default function GetStarted() {
         questionId: currentQuestion,
         question: questions[currentQuestion].question,
         answer: option.option,
+        prompt: option.prompt,
         display: option.answer || option.option,
       },
     ]);
@@ -323,7 +325,6 @@ export default function GetStarted() {
             <div className="d-flex justify-content-center align-items-center position-relative">
               <Question question="Almost Ready! Review Your Choices:" />
             </div>
-            <div className="text-center lead fs-3 mb-4">You Selected:</div>
             <div className="d-flex justify-content-center flex-wrap">
               {answers.map((answer, i) => (
                 <ReviewButton
@@ -335,12 +336,18 @@ export default function GetStarted() {
                 />
               ))}
             </div>
-            <div className="text-center mt-2 mb-4 lead fs-6">
-              Tip: Click a box to change your response.
+            <div className="d-flex justify-content-center mt-4 pb-4">
+              <button onClick={getResults} className="btn btn-primary btn-lg py-5 px-4 fs-4">
+                <RocketTakeoffFill className="mx-3" /> I'm Ready! Generate My Plan!{" "}
+                <RocketTakeoffFill className="mx-3" />
+              </button>
             </div>
-            <div className="d-flex justify-content-center my-4 pb-5">
-              <button onClick={getResults} className="btn btn-primary btn-lg">
-                I'm Ready! Generate My Plan!
+            <div className="text-center mb-5 pb-5">
+              <button
+                onClick={() => window.location.reload()}
+                className="btn btn-outline-secondary"
+              >
+                Not Happy? Start Over.
               </button>
             </div>
           </>
@@ -381,18 +388,13 @@ function Question({ question }) {
 }
 
 export function ReviewButton({ i, text, onClickParams, onClick }) {
-  const [showEdit, setEdit] = useState(false);
   return (
     <button
       className={`grows review-button btn btn-primary position-relative ${buttonClasses[i]}`}
       onClick={() => onClick(onClickParams)}
-      onMouseEnter={() => setEdit(true)}
-      onMouseLeave={() => setEdit(false)}
     >
       {text}
-      {showEdit && (
-        <PencilFill className="position-absolute top-0 end-0 translate-middle mt-3 fs-5" />
-      )}
+      <PencilFill className="position-absolute top-0 end-0 translate-middle mt-3 fs-5" />
     </button>
   );
 }

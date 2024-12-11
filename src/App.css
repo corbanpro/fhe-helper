@@ -84,12 +84,21 @@ body {
 }
 
 .grows {
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 .grows:hover {
-  transition: 0.5s;
+  transition: 0.3s;
   scale: 1.05;
+}
+
+.grows-big {
+  transition: 0.3s;
+}
+
+.grows-big:hover {
+  transition: 0.3s;
+  scale: 1.15;
 }
 
 .pointer-auto {

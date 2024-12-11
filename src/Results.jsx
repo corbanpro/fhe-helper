@@ -32,10 +32,10 @@ export default function Results() {
     const finalAnswers = {};
 
     answers.answers.forEach((answer) => {
-      finalAnswers[answer.question] = answer.display;
+      finalAnswers[answer.question] = answer.prompt ?? answer.display;
     });
     let proompt =
-      "You are a helpful assistant. meant to help someone plan their FHE. They are a member of the church of jesus christ of latter day saints. They want to have a spiritual experience, and they want to have fun. Take into account their relationship status. If they are single, it means they are alone and there is no one for them to study/pray/have fun with. Personalize the recommendations as much as possible to fit their requirements. Keep all activities centered on Jesus Christ. They want to have a very brief spiritual thought (no longer than 10 minutes), a main activity, and a treat (no longer than 20 minutes). We have already asked them a few questions to help us understand what their prefrences are. Here are the questions and their answers:\n\n";
+      "Meant to help someone plan their Family Home Evening. They are a member of The Church of Jesus Christ of Latter-day Saints. They want to have a spiritual experience, and they want to have fun.  Personalize the recommendations as much as possible to fit their requirements. Keep all activities centered on Jesus Christ. They want to have a very brief spiritual thought (no longer than 10 minutes), a main activity, and a treat (no longer than 20 minutes). Here is some info about them in question/answer format:\n\n";
 
     Object.entries(finalAnswers).forEach(([question, answer]) => {
       proompt += `Q: ${question}\nA: ${answer}\n\n`;
@@ -67,16 +67,28 @@ export default function Results() {
         ))}
       </div>
       <div className="mx-auto pb-5 px-3" style={{ maxWidth: "1048px" }}>
-        <h1 className="display-5 my-4">Your Results</h1>
         {!results ? (
-          <Skeleton count={5} />
+          <div>
+            <h1 className="display-5 my-4">Generating a Plan...</h1>
+            <Skeleton count={5} />
+            <div className="mx-5 py-4">
+              While you're waiting for your results, send me some feedback at{" "}
+              <a href="mailto:corbanpro@gmail.com">corbanpro@gmail.com</a> if you like the app or if
+              you have any suggestions for improvement. Really! Send me an email!
+            </div>
+            <Skeleton count={5} />
+          </div>
         ) : (
           <>
+            <h1 className="display-5 my-4">Your Plan</h1>
             <ReactMarkdown>{results}</ReactMarkdown>
             <hr className="mt-5" />
             <div className="d-flex justify-content-between">
               <div>
                 Want to start over? <Link to={"/get-started"}>Start a new plan</Link>
+              </div>
+              <div>
+                Send feedback to <a href="mailto:corbanpro@gmail.com">corbanpro@gmail.com</a>
               </div>
               <div>
                 Don't like the results?{" "}
