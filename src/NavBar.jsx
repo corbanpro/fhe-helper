@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function NavBar() {
   const navigate = useNavigate();
   return (
-    <Navbar expand="lg" className="bg-body-tertiary fs-4 z-3">
+    <Navbar expand="md" className="bg-body-tertiary fs-4 z-3">
       <Container fluid>
         <Navbar.Brand href="/" className="fs-3">
           Gather&Grow

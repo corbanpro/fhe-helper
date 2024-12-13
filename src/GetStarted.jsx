@@ -1,6 +1,7 @@
+// TODO: add input box on the review page where they can put any additional comments: allergies, disabilities, unique circumstances, etc.
 import { useState } from "react";
 import { CaretLeft, PencilFill, RocketTakeoffFill } from "react-bootstrap-icons";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Banner from "./Banner";
 
 const buttonClasses = [
@@ -263,8 +264,12 @@ const questions = {
 };
 
 export default function GetStarted() {
-  const [currentQuestion, setCurrentQuestion] = useState(firstQuestion);
-  const [answers, setAnswers] = useState([]);
+  const locationState = useLocation().state || {};
+  console.log(locationState);
+  const [currentQuestion, setCurrentQuestion] = useState(
+    locationState.firstQuestion || firstQuestion,
+  );
+  const [answers, setAnswers] = useState(locationState.answers || []);
   const [reviewing, setReviewing] = useState(false);
   const navigate = useNavigate();
 

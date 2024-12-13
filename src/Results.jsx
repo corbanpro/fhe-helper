@@ -4,7 +4,8 @@ import { getChatGPTResponse } from "./ChatGpt.js";
 import Banner from "./Banner";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { PencilFill } from "react-bootstrap-icons";
 
 const buttonClasses = [
   "card-gradient-1",
@@ -18,6 +19,7 @@ const buttonClasses = [
 export default function Results() {
   const [results, setResults] = useState("");
   const answers = JSON.parse(localStorage.getItem("answers") || "{}").answers;
+  const navigate = useNavigate();
 
   const generateNewPlan = (forceRefresh = false) => {
     const answers = JSON.parse(localStorage.getItem("answers") || "{}");
@@ -35,7 +37,7 @@ export default function Results() {
       finalAnswers[answer.question] = answer.prompt ?? answer.display;
     });
     let proompt =
-      "Meant to help someone plan their Family Home Evening. They are a member of The Church of Jesus Christ of Latter-day Saints. They want to have a spiritual experience, and they want to have fun.  Personalize the recommendations as much as possible to fit their requirements. Keep all activities centered on Jesus Christ. They want to have a very brief spiritual thought (no longer than 10 minutes), a main activity, and a treat (no longer than 20 minutes). Here is some info about them in question/answer format:\n\n";
+      "You are meant to help someone plan their Family Home Evening. They are a member of The Church of Jesus Christ of Latter-day Saints. They want to have a spiritual experience, and they want to have fun.  Personalize the recommendations as much as possible to fit their requirements. Keep all activities centered on Jesus Christ. They want to have a very brief spiritual thought (no longer than 10 minutes), a main activity, and a treat (no longer than 20 minutes). Here is some info about them in question/answer format:\n\n";
 
     Object.entries(finalAnswers).forEach(([question, answer]) => {
       proompt += `Q: ${question}\nA: ${answer}\n\n`;
@@ -63,7 +65,21 @@ export default function Results() {
       />
       <div className="justify-content-center flex-wrap my-3 d-none d-sm-flex">
         {answers.map((answer, i) => (
-          <ReviewButton i={i} key={i} text={answer.display} onClickParams={answer.questionId} />
+          <button
+            key={i}
+            className={`grows review-button btn btn-primary position-relative ${buttonClasses[i]}`}
+            onClick={() => {
+              navigate(`/get-started`, {
+                state: {
+                  answers: answers.slice(0, i),
+                  firstQuestion: answers[i].questionId,
+                },
+              });
+            }}
+          >
+            {answer.display}
+            <PencilFill className="position-absolute top-0 end-0 translate-middle mt-3 fs-5" />
+          </button>
         ))}
       </div>
       <div className="mx-auto pb-5 px-3" style={{ maxWidth: "1048px" }}>
@@ -101,15 +117,5 @@ export default function Results() {
         )}
       </div>
     </div>
-  );
-}
-
-export function ReviewButton({ i, text }) {
-  return (
-    <button
-      className={`review-button btn btn-primary position-relative ${buttonClasses[i]} pointer-auto`}
-    >
-      {text}
-    </button>
   );
 }
